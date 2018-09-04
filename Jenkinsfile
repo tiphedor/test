@@ -5,14 +5,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-		gcc -Wall -Wextra -Werror main.c -o main
+		sh 'gcc -Wall -Wextra -Werror main.c -o main'
 		archiveArtifacts artifacts: 'main', fingerprint: true 
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-		./main
+		sh './main'
             }
         }
         stage('Deploy') {
